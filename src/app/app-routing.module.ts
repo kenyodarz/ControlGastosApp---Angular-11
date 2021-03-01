@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginGuard } from './guards/login.guard';
 /* Components */
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
@@ -16,11 +17,11 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: 'resumen',
-    canActivate: [LoginGuard],
+    redirectTo: 'resume',
   },
 ];
 

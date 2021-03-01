@@ -21,6 +21,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
 import { TooltipModule } from 'primeng/tooltip';
+import { CardModule } from 'primeng/card';
 
 const myModule = [
   MessagesModule,
@@ -42,12 +43,12 @@ const myModule = [
   DropdownModule,
   MenuModule,
   TooltipModule,
+  CardModule,
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, myModule],
+  exports: [myModule],
 })
-export class PrimengModule { }
+export class PrimengModule {}

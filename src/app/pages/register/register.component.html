@@ -1,5 +1,5 @@
-<div class="p-grid">
-  <div class="p-col-8 p-offset-2">
+<div class="registerContainer">
+  <div class="p-col-6">
     <div class="box">
       <form
         [formGroup]="userForm"
@@ -11,14 +11,14 @@
             Registro Nuevo Usuario
           </p-header>
           <div
-            class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
+            class="p-fluid"
             style="margin: 10px 0px;"
           >
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2">
+            <div class="p-grid-row">
+              <div class="p-grid-col-2">
                 Usuario *:
               </div>
-              <div class="ui-grid-col-6">
+              <div class="p-grid-col-6">
                 <input
                   pInputText
                   type="text"
@@ -27,7 +27,7 @@
                   pTooltip="Ingrese su nombre de Usuario"
                 />
               </div>
-              <div class="ui-grid-col-4">
+              <div class="p-grid-col-4">
                 <p-message
                   severity="error"
                   text="Ingrese un nombre de Usuario"
@@ -38,11 +38,11 @@
                 ></p-message>
               </div>
             </div>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2">
+            <div class="p-grid-row">
+              <div class="p-grid-col-2">
                 Nombre *:
               </div>
-              <div class="ui-grid-col-6">
+              <div class="p-grid-col-6">
                 <input
                   pInputText
                   type="text"
@@ -51,7 +51,7 @@
                   pTooltip="Ingrese su Nombre Completo"
                 />
               </div>
-              <div class="ui-grid-col-4">
+              <div class="p-grid-col-4">
                 <p-message
                   severity="error"
                   text="Ingrese Nombre completo"
@@ -62,11 +62,11 @@
                 ></p-message>
               </div>
             </div>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2">
+            <div class="p-grid-row">
+              <div class="p-grid-col-2">
                 Email *:
               </div>
-              <div class="ui-grid-col-6">
+              <div class="p-grid-col-6">
                 <input
                   pInputText
                   type="email"
@@ -76,7 +76,7 @@
                   pTooltip="Ingrese su correo electronico"
                 />
               </div>
-              <div class="ui-grid-col-4">
+              <div class="p-grid-col-4">
                 <p-message
                   severity="error"
                   text="Ingrese un Correo electronico valido"
@@ -87,11 +87,11 @@
                 ></p-message>
               </div>
             </div>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2">
+            <div class="p-grid-row">
+              <div class="p-grid-col-2">
                 Contraseña *:
               </div>
-              <div class="ui-grid-col-6">
+              <div class="p-grid-col-6">
                 <input
                   pInputText
                   type="password"
@@ -100,7 +100,7 @@
                   pTooltip="Ingrese su contraseña"
                 />
               </div>
-              <div class="ui-grid-col-4">
+              <div class="p-grid-col-4">
                 <p-message
                   severity="error"
                   [text]="
@@ -119,8 +119,8 @@
             </div>
           </div>
           <p-footer>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2 p-offset-10">
+            <div class="p-grid-row">
+              <div class="p-grid-col-2 p-offset-10">
                 <button
                   pButton
                   type="submit"
