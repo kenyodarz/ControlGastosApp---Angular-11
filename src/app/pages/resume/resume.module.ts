@@ -6,11 +6,10 @@ import { PrimengModule } from 'src/app/shared/primeng.module';
 
 import { ResumeRoutingModule } from './resume-routing.module';
 import { HomeComponent } from './components/home/home.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, NavigationComponent],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     ResumeRoutingModule,

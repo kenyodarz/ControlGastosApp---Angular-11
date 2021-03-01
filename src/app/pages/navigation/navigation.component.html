@@ -1,7 +1,7 @@
 <div class="p-flud p-nogutter">
   <div class="p-col-12">
     <p-toolbar>
-      <div class="ui-toolbar-group-left">
+      <div class="p-toolbar-group-left">
         <button
           pButton
           type="button"
@@ -9,14 +9,14 @@
           *ngIf="isLoggedIn"
           icon="pi pi-bars"
           pTooltip="Desplegar Menu"
-          class="ui-button-secondary"
+          class="p-button-secondary"
           fxShow="true"
           fxHide.gt-sm
         ></button>
         <span [routerLink]="['/home']">{{ appName }}</span>
       </div>
 
-      <div class="ui-toolbar-group-right">
+      <div class="p-toolbar-group-right">
         <button
           pButton
           type="button"
@@ -25,7 +25,7 @@
           [routerLink]="['/profile']"
           routerLinkActive="router-link-active"
           icon="pi pi-user"
-          class="ui-button-secondary"
+          class="p-button-secondary"
         ></button>
         <button
           pButton
@@ -34,7 +34,7 @@
           pTooltip="Cerrar Sesion"
           (click)="logout()"
           icon="pi pi-sign-out"
-          class="ui-button-danger"
+          class="p-button-danger"
         ></button>
         <button
           pButton
@@ -44,7 +44,7 @@
           [routerLink]="['/login']"
           routerLinkActive="router-link-active"
           icon="pi pi-sign-out"
-          class="ui-button-success"
+          class="p-button-success"
         ></button>
         <button
           pButton
@@ -53,7 +53,7 @@
           [routerLink]="['/about']"
           routerLinkActive="router-link-active"
           icon="pi pi-th-large"
-          class="ui-button-info"
+          class="p-button-info"
         ></button>
       </div>
     </p-toolbar>

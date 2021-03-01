@@ -1,0 +1,22 @@
+button {
+  margin-right: 0.25em;
+}
+
+::ng-deep .p-toolbar .p-component{
+  font-size: 16pt;
+  font-weight: 700;
+}
+
+::ng-deep .p-button .p-button-icon {
+  font-size: 20pt;
+}
+
+span {
+  font-size: 20pt;
+  font-weight: 900;
+}
+
+::ng-deep .p-menu{
+  width: 100%;
+  margin: 5px 0;
+}

@@ -17,6 +17,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ResumeComponent } from './pages/resume/resume.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { NavigationComponent } from './pages/navigation/navigation.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { RegisterComponent } from './pages/register/register.component';
     LoginComponent,
     ResumeComponent,
     RegisterComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
