@@ -1,4 +1,4 @@
-<div class="ui-g ui-fluid">
+<div class="p-grid p-fluid">
   <p-panel>
     <p-header
       ><div style="text-align: center;"><strong>Descripciones</strong></div>
@@ -111,7 +111,7 @@
               type="button"
               pInitEditableRow
               icon="pi pi-pencil"
-              class="ui-button-info"
+              class="p-button-info"
               (click)="onRowEditInit(rowData)"
             ></button>
             <button
@@ -120,7 +120,7 @@
               type="button"
               pSaveEditableRow
               icon="pi pi-check"
-              class="ui-button-success"
+              class="p-button-success"
               style="margin-right: 0.5em;"
               (click)="onRowEditSave(rowData)"
             ></button>
@@ -131,7 +131,7 @@
               pCancelEditableRow
               icon="pi pi-times"
               (click)="selectedDescription = null"
-              class="ui-button-danger"
+              class="p-button-danger"
             ></button>
           </td>
         </tr>
@@ -159,10 +159,10 @@
     <p-header>
       Nueva Descripcion
     </p-header>
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-12">
-        <div class="ui-g-4">Nombre</div>
-        <div class="ui-g-8">
+    <div class="p-g p-fluid">
+      <div class="p-g-12">
+        <div class="p-g-4">Nombre</div>
+        <div class="p-g-8">
           <input
             pInputText
             id="nombre"
@@ -172,10 +172,10 @@
         </div>
       </div>
     </div>
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-12">
-        <div class="ui-g-4">Tipo de Descripcion</div>
-        <div class="ui-g-8">
+    <div class="p-g p-fluid">
+      <div class="p-g-12">
+        <div class="p-g-4">Tipo de Descripcion</div>
+        <div class="p-g-8">
           <p-dropdown
             [options]="selectedTipoDescripcion"
             id="tipoDescripcion"
@@ -184,10 +184,10 @@
         </div>
       </div>
     </div>
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-12">
-        <div class="ui-g-4">Descripcion</div>
-        <div class="ui-g-8">
+    <div class="p-g p-fluid">
+      <div class="p-g-12">
+        <div class="p-g-4">Descripcion</div>
+        <div class="p-g-8">
           <textarea
             [rows]="5"
             [cols]="30"
@@ -199,7 +199,7 @@
       </div>
     </div>
     <p-footer>
-      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <div class="p-dialog-buttonpane p-helper-clearfix">
         <button
           type="button"
           pButton

@@ -43,31 +43,31 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   navigateDescription(): void {
-    this.router.navigateByUrl('/description');
+    this.router.navigateByUrl('/resume/description');
     this.visibleSidebar = false;
   }
   navigateProyecto(): void {
-    this.router.navigateByUrl('/proyecto');
+    this.router.navigateByUrl('/resume/proyecto');
     this.visibleSidebar = false;
   }
   navigateRegistrosEntrada(): void {
-    this.router.navigateByUrl('/registrosEntrada');
+    this.router.navigateByUrl('/resume/registrosEntrada');
     this.visibleSidebar = false;
   }
   navigateRegistrosSalida(): void {
-    this.router.navigateByUrl('/registrosSalida');
+    this.router.navigateByUrl('/resume/registrosSalida');
     this.visibleSidebar = false;
   }
   navigateSaldo(): void {
-    this.router.navigateByUrl('/saldo');
+    this.router.navigateByUrl('/resume/saldo');
     this.visibleSidebar = false;
   }
   navigateInforme(): void {
-    this.router.navigateByUrl('/informe');
+    this.router.navigateByUrl('/resume/informe');
     this.visibleSidebar = false;
   }
   navigateGastos(): void {
-    this.router.navigateByUrl('/gastos');
+    this.router.navigateByUrl('/resume/gastos');
     this.visibleSidebar = false;
   }
 

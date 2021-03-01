@@ -13,7 +13,7 @@ import { Description } from 'src/app/core/models/description';
 @Component({
   selector: 'app-gastos',
   templateUrl: './gastos.component.html',
-  styleUrls: ['./gastos.component.scss'],
+  styleUrls: ['./gastos.component.css'],
 })
 export class GastosComponent implements OnInit {
   gastos: RegistroSalida[];
