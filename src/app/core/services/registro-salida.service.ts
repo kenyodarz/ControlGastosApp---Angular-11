@@ -4,11 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 /* RxJS */
 import { Observable } from 'rxjs';
 /* Modelo */
-import { RegistroSalida } from 'src/app/models/RegistroSalida';
+import { RegistroSalida } from 'src/app/core/models/RegistroSalida';
 /** Variable de Entorno */
-import { environment } from 'src/environments/environment';
+import { URL_API } from 'src/environments/environment';
 
-const API_URL: string = `${environment.API_URL}/registroSalida/`;
+const API_URL: string = `${URL_API}/registroSalida/`;
 
 @Injectable({
   providedIn: 'root',

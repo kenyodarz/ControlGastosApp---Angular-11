@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 // Modelo
 import { User } from 'src/app/models/user';
 /** Variable de Entorno */
-import { environment } from 'src/environments/environment';
+import { URL_API } from 'src/environments/environment';
 
-const API_URL: string = `${environment.API_URL}/user/`;
+const API_URL: string = `${URL_API}/user/`;
 
 @Injectable({
   providedIn: 'root',

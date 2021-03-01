@@ -4,11 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 // RxJS
 import { Observable } from 'rxjs';
 // Modelo
-import { Description } from 'src/app/models/description';
+import { Description } from 'src/app/core/models/description';
 /** Variable de Entorno */
-import { environment } from 'src/environments/environment';
+import { URL_API } from 'src/environments/environment';
 
-const API_URL: string = `${environment.API_URL}/description/`;
+const API_URL: string = `${URL_API}/description/`;
 
 @Injectable({
   providedIn: 'root',
