@@ -1,4 +1,4 @@
-<div class="ui-g ui-fluid">
+<div class="p-grid p-fluid">
   <div class="p-col-12">
     <p-panel>
       <p-header>
@@ -15,31 +15,31 @@
             label="Crear un Nuevo Informe"
             *ngIf="newInforme"
             (click)="nuevoInforme()"
-            styleClass="ui-button-success"
+            styleClass="p-button-success"
           ></p-button> -->
           <p-button
             type="button"
             label="Ver un Informe Antiguo"
-            routerLink="/reporte"
-            styleClass="ui-button-secundary"
+            routerLink="/resume/reporte"
+            styleClass="p-button-secundary"
           ></p-button>
           <p-button
             type="button"
             label="Guardar Informe"
             *ngIf="habilitarGuardarInforme"
             (click)="generarInforme()"
-            styleClass="ui-button-info"
+            styleClass="p-button-info"
           ></p-button>
         </div>
       </div>
       <div class="row">
         <div class="p-col 12" *ngIf="!newInforme">
-          <div class="ui-g-3" style="text-align: right;">
+          <div class="p-g-3" style="text-align: right;">
             <label style="vertical-align: sub;" for="usuario"
               >Seleccione un Usuario:
             </label>
           </div>
-          <div class="ui-g-9" *ngIf="showAdminBoard">
+          <div class="p-g-9" *ngIf="showAdminBoard">
             <p-dropdown
               [options]="usuarios"
               filter="true"
@@ -49,7 +49,7 @@
               (ngModelChange)="onUserChange()"
             ></p-dropdown>
           </div>
-          <div class="ui-g-9" *ngIf="!showAdminBoard">
+          <div class="p-g-9" *ngIf="!showAdminBoard">
             <!-- <p-dropdown
               [options]="usuarios"
               filter="true"
@@ -71,12 +71,12 @@
       </div>
       <div class="row">
         <div class="p-col-12">
-          <div class="ui-g-3" style="text-align: right;">
+          <div class="p-g-3" style="text-align: right;">
             <label style="vertical-align: sub;" for="informes"
               >Proyecto:
             </label>
           </div>
-          <div class="ui-g-9">
+          <div class="p-g-9">
             <p-dropdown
               [options]="proyectos"
               filter="true"

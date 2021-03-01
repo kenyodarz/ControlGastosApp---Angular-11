@@ -182,11 +182,14 @@ export class InformeComponent implements OnInit {
       });
     }
     this.total = this.debito - this.credito;
-    if (this.selectedGastos.length > 0 && this.total >= 0) {
+    if (this.selectedDesembolsos.length > 0 && this.selectedGastos.length > 0) {
       this.habilitarGuardarInforme = true;
-    } else {
-      this.habilitarGuardarInforme = false;
     }
+    // if (this.selectedGastos.length > 0 && this.total >= 0) {
+    //   this.habilitarGuardarInforme = true;
+    // } else {
+    //   this.habilitarGuardarInforme = false;
+    // }
     // console.log(this.habilitarGuardarInforme);
   }
 

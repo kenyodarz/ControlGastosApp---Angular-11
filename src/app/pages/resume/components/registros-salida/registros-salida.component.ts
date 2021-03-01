@@ -426,34 +426,36 @@ export class RegistrosSalidaComponent implements OnInit {
       users: this.currentUser,
     });
     this.registroSalida = this.formRegistroSalida.value;
-    if (this.selectedRegistroSalida) {
-      let a =
-        this.selectedRegistroSalida.cantidad - this.registroSalida.cantidad;
-      if (this.total + a < 0) {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Se excede la cantidad disponible por' + (this.total + a),
-          closable: true,
-        });
-        this.formRegistroSalida.reset();
-        this.selectedRegistroSalida = null;
-        return;
-      }
-      this.guardarRegistroSalida();
-      this.selectedRegistroSalida = null;
-    } else {
-      if (this.total >= this.formRegistroSalida.value.cantidad) {
-        this.guardarRegistroSalida();
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'El gasto ingresado excede el dinero disponible',
-          closable: true,
-        });
-      }
-    }
+    /* El siguiente codigo queda en desuso por cambio de politicas del cliente */
+    // if (this.selectedRegistroSalida) {
+    //   let a =
+    //     this.selectedRegistroSalida.cantidad - this.registroSalida.cantidad;
+    //   if (this.total + a < 0) {
+    //     this.messageService.add({
+    //       severity: 'error',
+    //       summary: 'Error',
+    //       detail: 'Se excede la cantidad disponible por' + (this.total + a),
+    //       closable: true,
+    //     });
+    //     this.formRegistroSalida.reset();
+    //     this.selectedRegistroSalida = null;
+    //     return;
+    //   }
+    //   this.guardarRegistroSalida();
+    //   this.selectedRegistroSalida = null;
+    // } else {
+    //   if (this.total >= this.formRegistroSalida.value.cantidad) {
+    //     this.guardarRegistroSalida();
+    //   } else {
+    //     this.messageService.add({
+    //       severity: 'error',
+    //       summary: 'Error',
+    //       detail: 'El gasto ingresado excede el dinero disponible',
+    //       closable: true,
+    //     });
+    //   }
+    // }
+    this.guardarRegistroSalida();
     this.sumTotal();
   }
   onUserChange() {
