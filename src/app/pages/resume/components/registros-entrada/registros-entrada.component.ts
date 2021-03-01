@@ -119,10 +119,10 @@ export class RegistrosEntradaComponent implements OnInit {
         }
         this.registros = registrosEntradas.sort(function (a, b) {
           if (a.fecha > b.fecha) {
-            return 1;
+            return -1;
           }
           if (a.fecha < b.fecha) {
-            return -1;
+            return 1;
           }
           // Si a y b son iguales
           return 0;
@@ -317,8 +317,6 @@ export class RegistrosEntradaComponent implements OnInit {
       fecha: new FormControl(null, Validators.required),
       cantidad: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]*$'),
-        Validators.min(1),
       ]),
       users: new FormControl(null, Validators.required),
     });

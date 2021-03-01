@@ -22,6 +22,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenuModule } from 'primeng/menu';
 import { TooltipModule } from 'primeng/tooltip';
 import { CardModule } from 'primeng/card';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 const myModule = [
   MessagesModule,
@@ -44,6 +46,8 @@ const myModule = [
   MenuModule,
   TooltipModule,
   CardModule,
+  KeyFilterModule,
+  InputTextareaModule,
 ];
 
 @NgModule({

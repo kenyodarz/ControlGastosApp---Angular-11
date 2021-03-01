@@ -18,7 +18,7 @@ import { Proyecto } from 'src/app/core/models/Proyecto';
   styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit {
-  appName = 'CDM MANTENIMIENTO Y SERVICIOS';
+  appName = 'CDM FIELD SERVICE';
   private roles: string[];
   isLoggedIn = false;
   visibleSidebar = false;

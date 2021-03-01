@@ -1,4 +1,4 @@
-<div class="ui-g ui-fluid">
+<div class="p-g p-fluid">
   <p-panel>
     <p-header>
       <div style="text-align: center;">
@@ -108,11 +108,11 @@
         <p-header>
           Agregar Entrada
         </p-header>
-        <div class="ui-g ui-fluid">
-          <div class="ui-g-3">
+        <div class="p-g p-fluid">
+          <div class="p-g-3">
             <label for="observaciones">Descripcion: </label>
           </div>
-          <div class="ui-g-9">
+          <div class="p-g-9">
             <input
               pInputText
               type="text"
@@ -134,10 +134,10 @@
               "
             ></p-message>
           </div>
-          <div class="ui-g-3">
+          <div class="p-g-3">
             <label for="fecha">Fecha: </label>
           </div>
-          <div class="ui-g-9">
+          <div class="p-g-9">
             <p-calendar
               dataType="string"
               dateFormat="yy-mm-dd"
@@ -158,10 +158,10 @@
               "
             ></p-message>
           </div>
-          <div class="ui-g-3">
+          <div class="p-g-3">
             <label for="description">Tipo de Entrada</label>
           </div>
-          <div class="ui-g-9">
+          <div class="p-g-9">
             <p-dropdown
               [options]="descriptions"
               optionLabel="nombre"
@@ -179,16 +179,17 @@
               "
             ></p-message>
           </div>
-          <div class="ui-g-3">
+          <div class="p-g-3">
             <label for="cantidad">Cantidad: </label>
           </div>
-          <div class="ui-g-9">
+          <div class="p-g-9">
             <input
               pInputText
               type="text"
               placeholder="Requerido"
               id="cantidad"
               name="cantidad"
+              pKeyFilter="int"
               formControlName="cantidad"
             />
             <p-message
@@ -214,10 +215,10 @@
             "
           ></p-message> -->
           </div>
-          <div class="ui-g-3">
+          <div class="p-g-3">
             <label for="users">Usuario</label>
           </div>
-          <div class="ui-g-9">
+          <div class="p-g-9">
             <p-dropdown
               [options]="usuarios"
               optionLabel="name"
@@ -242,7 +243,7 @@
               pButton
               type="submit"
               label="Añadir"
-              class="ui-button-secundary btn-block"
+              class="p-button-secundary btn-block"
               [disabled]="!formRegistro.valid"
             ></button>
           </div>
