@@ -1,0 +1,66 @@
+<div class="p-flud p-nogutter">
+  <div class="p-col-12">
+    <p-toolbar>
+      <div class="ui-toolbar-group-left">
+        <button
+          pButton
+          type="button"
+          (click)="visibleSidebar = true"
+          *ngIf="isLoggedIn"
+          icon="pi pi-bars"
+          pTooltip="Desplegar Menu"
+          class="ui-button-secondary"
+          fxShow="true"
+          fxHide.gt-sm
+        ></button>
+        <span [routerLink]="['/home']">{{ appName }}</span>
+      </div>
+
+      <div class="ui-toolbar-group-right">
+        <button
+          pButton
+          type="button"
+          label="{{ username }}"
+          *ngIf="isLoggedIn"
+          [routerLink]="['/profile']"
+          routerLinkActive="router-link-active"
+          icon="pi pi-user"
+          class="ui-button-secondary"
+        ></button>
+        <button
+          pButton
+          *ngIf="isLoggedIn"
+          type="button"
+          pTooltip="Cerrar Sesion"
+          (click)="logout()"
+          icon="pi pi-sign-out"
+          class="ui-button-danger"
+        ></button>
+        <button
+          pButton
+          type="button"
+          label="Iniciar Sesion"
+          *ngIf="!isLoggedIn"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+          icon="pi pi-sign-out"
+          class="ui-button-success"
+        ></button>
+        <button
+          pButton
+          type="button"
+          pTooltip="Acerca de"
+          [routerLink]="['/about']"
+          routerLinkActive="router-link-active"
+          icon="pi pi-th-large"
+          class="ui-button-info"
+        ></button>
+      </div>
+    </p-toolbar>
+  </div>
+  <p-sidebar [(visible)]="visibleSidebar" [style]="{width:'30em'}" [baseZIndex]="10000">
+    <h1 style="font-weight: normal;">Menu</h1>
+    <p-menu [model]="menuUsers"></p-menu>
+    <p-menu [model]="menuAdmin" *ngIf="showAdminBoard"></p-menu>
+  </p-sidebar>
+</div>

@@ -1,5 +1,5 @@
-import { Proyecto } from 'src/app/models/Proyecto';
-import { User } from 'src/app/models/User';
+import { Proyecto } from 'src/app/core/models/Proyecto';
+import { User } from 'src/app/core/models/User';
 export class Informe {
   constructor(
     public idInforme: number = null,

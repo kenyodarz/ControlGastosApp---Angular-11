@@ -1,5 +1,5 @@
-import { Description } from 'src/app/models/description';
-import { User } from 'src/app/models/User';
+import { Description } from 'src/app/core/models/description';
+import { User } from 'src/app/core/models/User';
 import { Informe } from './Informe';
 export class RegistroSalida {
   constructor(
