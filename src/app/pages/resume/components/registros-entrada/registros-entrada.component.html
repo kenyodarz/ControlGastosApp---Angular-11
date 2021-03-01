@@ -1,0 +1,253 @@
+<div class="ui-g ui-fluid">
+  <p-panel>
+    <p-header>
+      <div style="text-align: center;">
+        <strong>
+          Desembolsos
+        </strong>
+      </div>
+    </p-header>
+    <p-menubar [model]="items"></p-menubar>
+    <p-table
+      #dt
+      [value]="registros"
+      dataKey="idRegistro"
+      [(selection)]="selectedRegistro"
+      [columns]="cols"
+      [paginator]="true"
+      selectionMode="single"
+      editMode="row"
+      [rows]="10"
+      [responsive]="true"
+    >
+      <ng-template pTemplate="caption">
+        <div style="text-align: right;">
+          <i class="pi pi-search" style="margin: 4px 4px 0 0;"></i>
+          <input
+            type="text"
+            pInputText
+            size="50"
+            placeholder="Buscar"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            style="width: auto;"
+          />
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th
+            *ngFor="let col of columns"
+            [pSortableColumn]="col.field"
+            [ngSwitch]="col.field"
+          >
+            {{ col.header }}
+            <p-sortIcon
+              [field]="col.field"
+              ariaLabel="Activate to sort"
+              ariaLabelDesc="Activate to sort in descending order"
+              ariaLabelAsc="Activate to sort in ascending order"
+            >
+            </p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            <div
+              *ngIf="
+                col.subfield;
+                then nested_object_content;
+                else normal_content
+              "
+            ></div>
+            <ng-template #nested_object_content>
+              {{ rowData[col.field][col.subfield] }}
+            </ng-template>
+            <ng-template #normal_content>
+              {{ rowData[col.field] }}
+            </ng-template>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div style="text-align: left;">
+          <!-- Errores Marcados por TSLint -->
+          Registro Seleccionado:
+          {{
+            selectedRegistro
+              ? selectedRegistro.observaciones +
+                " - " +
+                selectedRegistro.cantidad +
+                " - " +
+                selectedRegistro.users['name']
+              : "Ninguno"
+          }}
+        </div>
+      </ng-template>
+    </p-table>
+  </p-panel>
+  <!-- 
+    **************************************************************************************
+    **************************************************************************************
+    **************************************************************************************
+    ***********************Side Bar - Edicion y Creacion de Desembolsos*******************
+    **************************************************************************************
+    **************************************************************************************
+    ************************************************************************************** 
+  -->
+  <p-sidebar
+    [(visible)]="displaySaveEditDialog"
+    position="right"
+    [baseZIndex]="10000"
+    [style]="{ width: '30em' }"
+  >
+    <br />
+    <form [formGroup]="formRegistro" (ngSubmit)="guardarRegistro()">
+      <p-panel>
+        <p-header>
+          Agregar Entrada
+        </p-header>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-3">
+            <label for="observaciones">Descripcion: </label>
+          </div>
+          <div class="ui-g-9">
+            <input
+              pInputText
+              type="text"
+              id="observaciones"
+              name="observaciones"
+              formControlName="observaciones"
+              placeholder="Requerido"
+              [ngClass]="{
+                'is-valid': observaciones.dirty && !observaciones.errors,
+                'is-invalid': observaciones.dirty && observaciones.errors
+              }"
+            />
+            <p-message
+              severity="error"
+              text="Favor indique una Descripcion"
+              *ngIf="
+                !formRegistro.controls['observaciones'].valid &&
+                formRegistro.controls['observaciones'].dirty
+              "
+            ></p-message>
+          </div>
+          <div class="ui-g-3">
+            <label for="fecha">Fecha: </label>
+          </div>
+          <div class="ui-g-9">
+            <p-calendar
+              dataType="string"
+              dateFormat="yy-mm-dd"
+              readonlyInput="true"
+              [locale]="es"
+              showButtonBar="true"
+              required
+              id="fecha"
+              name="fecha"
+              formControlName="fecha"
+            ></p-calendar>
+            <p-message
+              severity="error"
+              text="Ingrese una fecha"
+              *ngIf="
+                !formRegistro.controls['fecha'].valid &&
+                formRegistro.controls['fecha'].dirty
+              "
+            ></p-message>
+          </div>
+          <div class="ui-g-3">
+            <label for="description">Tipo de Entrada</label>
+          </div>
+          <div class="ui-g-9">
+            <p-dropdown
+              [options]="descriptions"
+              optionLabel="nombre"
+              placeholder="Seleccione Un Tipo Descripcion"
+              id="description"
+              name="description"
+              formControlName="description"
+            ></p-dropdown>
+            <p-message
+              severity="error"
+              text="Seleccione un tipo de Descripcion"
+              *ngIf="
+                !formRegistro.controls['description'].valid &&
+                formRegistro.controls['description'].dirty
+              "
+            ></p-message>
+          </div>
+          <div class="ui-g-3">
+            <label for="cantidad">Cantidad: </label>
+          </div>
+          <div class="ui-g-9">
+            <input
+              pInputText
+              type="text"
+              placeholder="Requerido"
+              id="cantidad"
+              name="cantidad"
+              formControlName="cantidad"
+            />
+            <p-message
+              severity="error"
+              text="Una Cantidad es Requerida"
+              *ngIf="
+                !formRegistro.controls['cantidad'].valid &&
+                formRegistro.controls['cantidad'].dirty
+              "
+            ></p-message>
+            <!-- <p-message
+            severity="error"
+            text="Debe Ingresar Un Numero"
+            *ngIf="
+              formRegistro.controls['quantity'].errors.pattern
+            "
+          ></p-message> -->
+            <!-- <p-message
+            severity="error"
+            text="Debe ser un Valor Mayor a Cero(0)"
+            *ngIf="
+              formRegistro.controls['quantity'].errors.min
+            "
+          ></p-message> -->
+          </div>
+          <div class="ui-g-3">
+            <label for="users">Usuario</label>
+          </div>
+          <div class="ui-g-9">
+            <p-dropdown
+              [options]="usuarios"
+              optionLabel="name"
+              placeholder="Seleccione Un Usuario"
+              id="users"
+              name="users"
+              formControlName="users"
+            ></p-dropdown>
+            <p-message
+              severity="error"
+              text="Seleccione un Usuario"
+              *ngIf="
+                !formRegistro.controls['users'].valid &&
+                formRegistro.controls['users'].dirty
+              "
+            ></p-message>
+          </div>
+        </div>
+        <p-footer>
+          <div>
+            <button
+              pButton
+              type="submit"
+              label="Añadir"
+              class="ui-button-secundary btn-block"
+              [disabled]="!formRegistro.valid"
+            ></button>
+          </div>
+        </p-footer>
+      </p-panel>
+    </form>
+  </p-sidebar>
+</div>

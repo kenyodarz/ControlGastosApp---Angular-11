@@ -1,0 +1,261 @@
+<div class="ui-g ui-fluid">
+  <div class="p-col-12">
+    <p-panel>
+      <p-header>
+        <div style="text-align: center;">
+          Valores Inicales
+        </div>
+      </p-header>
+      <div class="p-grid">
+        <div class="p-col-6">
+          <div *ngIf="!showAdminBoard">
+            <div>Nombre:</div>
+            <input
+              pInputText
+              type="text"
+              readonly="true"
+              [(ngModel)]="currentUser.name"
+            />
+          </div>
+          <div *ngIf="showAdminBoard">
+            <div>Nombre:</div>
+            <p-dropdown
+              [options]="usuarios"
+              [(ngModel)]="selectedUsuario"
+              placeholder="Seleccione un Usuario"
+              optionLabel="name"
+              (ngModelChange)="onUserChange(); cargarValores()"
+            ></p-dropdown>
+          </div>
+        </div>
+        <!-- <div class="p-col-6">
+          <div>
+            <div>Proyecto:</div>
+            <p-dropdown
+              [options]="proyectos"
+              [(ngModel)]="selectedProyecto"
+              optionLabel="nombre"
+              readonly="true"
+              placeholder="Seleccione Un proyecto"
+            ></p-dropdown>
+          </div>
+        </div> -->
+        <div class="p-col-6">
+          <div>
+            <div>Desembolso:</div>
+            <p-multiSelect
+              [options]="registrosEntrada"
+              [(ngModel)]="registrosEntrada"
+              optionLabel="observaciones"
+              readonly="true"
+              defaultLabel="Sin desembolsos activos"
+            ></p-multiSelect>
+          </div>
+        </div>
+        <!-- <div class="p-col-6">
+          <div>
+            <div>Saldos Anteriores</div>
+            <p-multiSelect
+              [options]="saldos"
+              [(ngModel)]="saldos"
+              optionLabel="observaciones"
+              readonly="true"
+              defaultLabel="Seleccione Un desembolso"
+              (ngModelChange)="sumTotal()"
+            ></p-multiSelect>
+          </div>
+        </div> -->
+      </div>
+      <p-footer>
+        <div class="row no-gutters">
+          <div class="col-12 total mb-4">
+            <span>
+              Total:
+              <span
+                [ngClass]="{
+                  'text-danger': total < 0,
+                  'text-success': total > 0
+                }"
+                >$ {{ total }}</span
+              >
+            </span>
+          </div>
+        </div>
+      </p-footer>
+    </p-panel>
+  </div>
+  <div class="p-col-12" *ngIf="showActions">
+    <form [formGroup]="formRegistroSalida" (ngSubmit)="onSubmit()">
+      <p-panel>
+        <p-header>
+          <div style="text-align: center;">
+            Relacion Gastos de Viaje
+          </div>
+        </p-header>
+        <div class="p-grid">
+          <div class="p-col-6">
+            <div>
+              <div>Fecha: *</div>
+              <p-calendar
+                dataType="string"
+                dateFormat="yy-mm-dd"
+                showButtonBar="true"
+                formControlName="fecha"
+                [locale]="es"
+              ></p-calendar>
+              <p-message
+                severity="error"
+                text="Por favor indique una fecha"
+                *ngIf="
+                  !formRegistroSalida.controls['fecha'].valid &&
+                  formRegistroSalida.controls['fecha'].dirty
+                "
+              ></p-message>
+            </div>
+          </div>
+          <div class="p-col-6">
+            <div>
+              <div>Tipo de Gasto:*</div>
+              <p-dropdown
+                [options]="descriptions"
+                optionLabel="nombre"
+                filter="true"
+                placeholder="Descripcion"
+                formControlName="description"
+              ></p-dropdown>
+              <p-message
+                severity="error"
+                text="Por favor Seleccione una Descripcion"
+                *ngIf="
+                  !formRegistroSalida.controls['description'].valid &&
+                  formRegistroSalida.controls['description'].dirty
+                "
+              ></p-message>
+            </div>
+          </div>
+          <div class="p-col-6">
+            <div>
+              <div>Nro. Factura o detalle del gasto:*</div>
+            </div>
+            <input pInputText type="text" formControlName="observaciones" />
+            <p-message
+              severity="error"
+              text="Por favor Ingrese un Nro. Factura o detalle"
+              *ngIf="
+                !formRegistroSalida.controls['observaciones'].valid &&
+                formRegistroSalida.controls['observaciones'].dirty
+              "
+            ></p-message>
+          </div>
+          <div class="p-col-6">
+            <div>
+              <div>Valor:*</div>
+              <input pInputText type="text" formControlName="cantidad" />
+            </div>
+            <p-message
+              severity="error"
+              text="Por favor una Cantidad Valida"
+              *ngIf="
+                !formRegistroSalida.controls['cantidad'].valid &&
+                formRegistroSalida.controls['cantidad'].dirty
+              "
+            ></p-message>
+          </div>
+        </div>
+        <p-footer>
+          <div>
+            <button
+              pButton
+              type="submit"
+              label="Agregar Gasto"
+              [disabled]="!formRegistroSalida.valid"
+            ></button>
+          </div>
+        </p-footer>
+      </p-panel>
+    </form>
+  </div>
+  <div class="p-col-12" *ngIf="showActions">
+    <p-panel>
+      <p-header>
+        <div style="text-align: center;">
+          <div style="text-align: center;">
+            Gastos
+          </div>
+        </div>
+      </p-header>
+      <p-menubar [model]="items" *ngIf="!cerrarTodosRegistros"></p-menubar>
+      <p-table
+        #dt
+        [value]="registrosSalida"
+        dataKey="idRegistroSalida"
+        [(selection)]="selectedRegistroSalida"
+        [columns]="cols"
+        [paginator]="true"
+        selectionMode="single"
+        editMode="row"
+        [rows]="10"
+        [responsive]="true"
+      >
+        <ng-template pTemplate="caption">
+          <div style="text-align: right;">
+            <i class="pi pi-search" style="margin: 4px 4px 0 0;"></i>
+            <input
+              type="text"
+              pInputText
+              size="50"
+              placeholder="Buscar"
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="width: auto;"
+            />
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr style="text-align: center;">
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon
+                [field]="col.field"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              >
+              </p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              <div
+                *ngIf="
+                  col.subfield;
+                  then nested_object_content;
+                  else normal_content
+                "
+              ></div>
+              <ng-template #nested_object_content>
+                {{ rowData[col.field][col.subfield] }}
+              </ng-template>
+              <ng-template #normal_content>
+                {{ rowData[col.field] }}
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div style="text-align: left;">
+            Registro Seleccionado :
+            {{
+              selectedRegistroSalida
+                ? selectedRegistroSalida.idRegistroSalida +
+                  " - " +
+                  selectedRegistroSalida.observaciones
+                : "Ninguno"
+            }}
+          </div>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
+</div>

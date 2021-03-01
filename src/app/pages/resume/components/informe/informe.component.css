@@ -1,0 +1,10 @@
+:host ::ng-deep p-button {
+  margin-right: 0.25em;
+}
+.total {
+  text-align: center;
+  border-radius: 4px;
+  font-size: 36px;
+  background: #efefef;
+  padding: 10px;
+}

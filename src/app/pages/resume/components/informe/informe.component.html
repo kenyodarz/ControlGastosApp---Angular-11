@@ -1,0 +1,241 @@
+<div class="ui-g ui-fluid">
+  <div class="p-col-12">
+    <p-panel>
+      <p-header>
+        <div style="text-align: center;">
+          <strong>
+            Valores iniciales para el informe
+          </strong>
+        </div>
+      </p-header>
+      <div class="row">
+        <div class="col-12">
+          <!-- <p-button
+            type="button"
+            label="Crear un Nuevo Informe"
+            *ngIf="newInforme"
+            (click)="nuevoInforme()"
+            styleClass="ui-button-success"
+          ></p-button> -->
+          <p-button
+            type="button"
+            label="Ver un Informe Antiguo"
+            routerLink="/reporte"
+            styleClass="ui-button-secundary"
+          ></p-button>
+          <p-button
+            type="button"
+            label="Guardar Informe"
+            *ngIf="habilitarGuardarInforme"
+            (click)="generarInforme()"
+            styleClass="ui-button-info"
+          ></p-button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="p-col 12" *ngIf="!newInforme">
+          <div class="ui-g-3" style="text-align: right;">
+            <label style="vertical-align: sub;" for="usuario"
+              >Seleccione un Usuario:
+            </label>
+          </div>
+          <div class="ui-g-9" *ngIf="showAdminBoard">
+            <p-dropdown
+              [options]="usuarios"
+              filter="true"
+              placeholder="Seleccione Un Usuario"
+              [(ngModel)]="selectedUsuario"
+              optionLabel="name"
+              (ngModelChange)="onUserChange()"
+            ></p-dropdown>
+          </div>
+          <div class="ui-g-9" *ngIf="!showAdminBoard">
+            <!-- <p-dropdown
+              [options]="usuarios"
+              filter="true"
+              placeholder="Seleccione Un Usuario"
+              [(ngModel)]="selectedUsuario"
+              optionLabel="name"
+              (ngModelChange)="onUserChange()"
+            ></p-dropdown> -->
+            <input
+              id="input"
+              type="text"
+              size="30"
+              pInputText
+              readonly
+              [(ngModel)]="this.currentUser.name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="p-col-12">
+          <div class="ui-g-3" style="text-align: right;">
+            <label style="vertical-align: sub;" for="informes"
+              >Proyecto:
+            </label>
+          </div>
+          <div class="ui-g-9">
+            <p-dropdown
+              [options]="proyectos"
+              filter="true"
+              placeholder="Seleccione un Proyecto"
+              [(ngModel)]="selectedProyecto"
+              optionLabel="idProyecto"
+              (ngModelChange)="onProyectoChange()"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <p-footer>
+        <div class="row no-gutters">
+          <div class="col-12 total mb-4">
+            <span>
+              Total:
+              <span
+                [ngClass]="{
+                  'text-danger': total < 0,
+                  'text-success': total > 0
+                }"
+              >
+                $ {{ total }}
+              </span>
+            </span>
+          </div>
+        </div>
+      </p-footer>
+    </p-panel>
+    <!-- 
+        *****************************************************************************
+        ***************************************************************************** 
+        **********************Panel de seleccion de desembolsos**********************
+        *****************************************************************************
+        *****************************************************************************
+     -->
+    <p-panel>
+      <p-header>
+        <div style="text-align: center;">
+          <strong>DESEMBOLSOS</strong>
+        </div>
+      </p-header>
+      <p-table
+        [columns]="colsDesembolsos"
+        [value]="desembolsos"
+        [(selection)]="selectedDesembolsos"
+        dataKey="idRegistro"
+        (selectionChange)="sumTotal()"
+      >
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 3em;">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns">
+              {{ col.header }}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of columns">
+              <div
+                *ngIf="
+                  col.subfield;
+                  then nested_object_content;
+                  else normal_content
+                "
+              ></div>
+              <ng-template #nested_object_content>
+                {{ rowData[col.field][col.subfield] }}
+              </ng-template>
+              <ng-template #normal_content>
+                {{ rowData[col.field] }}
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <ul>
+            <li
+              *ngFor="let desembolso of selectedDesembolsos"
+              style="text-align: left;"
+            >
+              {{
+                desembolso.observaciones +
+                  " - " +
+                  desembolso.cantidad +
+                  " - " +
+                  desembolso.users.name
+              }}
+            </li>
+          </ul>
+        </ng-template>
+      </p-table>
+    </p-panel>
+    <!-- 
+        *****************************************************************************
+        ***************************************************************************** 
+        **********************Panel de seleccion de Gastos***************************
+        *****************************************************************************
+        *****************************************************************************
+     -->
+    <p-panel>
+      <p-header>
+        <div style="text-align: center;">
+          <strong>GASTOS</strong>
+        </div>
+      </p-header>
+      <p-table
+        [columns]="colsGastos"
+        [value]="gastos"
+        [(selection)]="selectedGastos"
+        dataKey="idRegistroSalida"
+        (selectionChange)="sumTotal()"
+      >
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 3em;">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns">
+              {{ col.header }}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of columns">
+              <div
+                *ngIf="
+                  col.subfield;
+                  then nested_object_content;
+                  else normal_content
+                "
+              ></div>
+              <ng-template #nested_object_content>
+                {{ rowData[col.field][col.subfield] }}
+              </ng-template>
+              <ng-template #normal_content>
+                {{ rowData[col.field] }}
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <ul>
+            <li *ngFor="let gasto of selectedGastos" style="text-align: left;">
+              {{ gasto.idRegistroSalida + " - " + gasto.observaciones }}
+            </li>
+          </ul>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
+</div>

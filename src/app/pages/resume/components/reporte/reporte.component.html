@@ -1,0 +1,261 @@
+<div class="ui-g ui-fluid">
+  <div class="col-12">
+    <p-panel>
+      <p-header>
+        <div style="text-align: center;">
+          <strong>
+            Valores iniciales para el informe
+          </strong>
+        </div>
+      </p-header>
+      <div class="row">
+        <div class="col-12">
+          <p-button
+            type="button"
+            label="Generar un Informe"
+            routerLink="/informe"
+            styleClass="ui-button-secundary"
+          ></p-button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="ui-g-3" style="text-align: right;">
+            <label style="vertical-align: sub;" for="informes"
+              >Informes:
+            </label>
+          </div>
+          <div class="ui-g-9">
+            <p-dropdown
+              [options]="informes"
+              filter="true"
+              placeholder="Seleccione un Informe"
+              [(ngModel)]="selectedInforme"
+              optionLabel="idInforme"
+              (ngModelChange)="onInformeChange()"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <p-footer>
+        <p-button
+          icon="pi pi-file-pdf"
+          (click)="abrirPDF()"
+          label="Generar PDF"
+          *ngIf="selectedInforme"
+        ></p-button>
+        <!-- <p-button
+          icon="pi pi-file-excel"
+          (click)="exportExcel()"
+          label="Generar Excel"
+          *ngIf="selectedInforme"
+        ></p-button> -->
+      </p-footer>
+    </p-panel>
+    <br />
+    <div class="container">
+      <div class="row mr-2 ml-2" id="id">
+        <div class="col-12">
+          <p-panel>
+            <p-header>
+              <div style="text-align: center;">Vista Previa Relacion Gastos de Viaje</div>
+            </p-header>
+            <div class="row">
+              <div
+                class="col-12"
+                style="border: solid; border-width: 2px; border-radius: 15px;"
+              >
+                <div class="ui-g-2">
+                  <img src="./assets/images/lc.png" style="width: 70%;" />
+                </div>
+                <div class="ui-g-8">
+                  <p style="font-size: 8pt; text-align: center;">
+                    CDM MANTENIMIENTO Y SERVICIOS LTDA.<br />
+                    NIT: 900.342.895-7<br />
+                    AUTOPISTA A SAN ANTONIO CRA 7 # 10-196 LOMITAS<br />
+                    TEL: 5732010 - 5732013
+                  </p>
+                </div>
+                <div class="ui-g-2">
+                  <div class="row">
+                    <div class="col-12">
+                      <div style="text-align: center;">
+                        <strong>NUMERO:</strong>
+                      </div>
+                      <div style="text-align: center;">
+                        GVSC-{{ informe.idInforme }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div style="text-align: center;">
+                        <strong>FECHA:</strong>
+                      </div>
+                      <div style="text-align: center;">
+                        {{ informe.fecha }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div
+                class="col-12"
+                style="border: solid; border-width: 2px; border-radius: 15px;"
+              >
+                <div class="ui-g-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="nombre"><strong>Nombre: </strong></label>
+                      {{ selectedInforme ? selectedInforme.users.name : "" }}
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="proyecto"><strong>Cargar a: </strong></label>
+                      {{
+                        selectedInforme
+                          ? selectedInforme.proyecto.idProyecto +
+                            " - " +
+                            selectedInforme.proyecto.nombre
+                          : ""
+                      }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div
+                class="col-12"
+                style="border: solid; border-width: 2px; border-radius: 15px;"
+              >
+                <div class="ui-g-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <table style="width: 100%;">
+                        <tr>
+                          <th style="text-align: center;">Anticipo</th>
+                          <th style="text-align: center;">Valor</th>
+                        </tr>
+                        <tr *ngFor="let desembolso of desembolsos">
+                          <td style="text-align: center;">
+                            {{ desembolso.observaciones }}
+                          </td>
+                          <td class="text-success" style="text-align: center;">
+                            {{ desembolso.cantidad | currency }}
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-g-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <label for="credito"
+                            ><strong>Total Gasto: </strong></label
+                          >
+                        </div>
+                        <div class="col-6">
+                          <div class="text-danger">
+                            {{
+                              selectedInforme
+                                ? (selectedInforme.credito | currency)
+                                : ""
+                            }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <label for="saldo"
+                            ><strong>Saldo a Favor</strong></label
+                          >
+                        </div>
+                        <div class="col-6">
+                          <div class="text-success">
+                            {{
+                              selectedInforme
+                                ? (selectedInforme.total | currency)
+                                : ""
+                            }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div
+                class="col-12"
+                style="border: solid; border-width: 2px; border-radius: 15px;"
+              >
+                <p-table
+                  #dt
+                  [value]="gastos"
+                  [columns]="cols"
+                  [resizableColumns]="true"
+                  styleClass="no-gutters"
+                  tableStyleClass="no-gutters"
+                >
+                  <ng-template pTemplate="header" let-columns>
+                    <tr style="text-align: center;">
+                      <th style="width: 8%;">Item</th>
+                      <th style="width: 15%;">Fecha</th>
+                      <th style="width: 20%;">Factura Nro.</th>
+                      <th style="width: 42%;">Descripcion</th>
+                      <th style="width: 15%;">Valor</th>
+                      <!-- <th *ngFor="let col of columns">
+                        {{ col.header }}
+                      </th> -->
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowIndex="rowIndex"
+                    let-rowData
+                    let-columns="columns"
+                  >
+                    <tr style="font-size: 8pt;">
+                      <td style="text-align: center;">{{ rowIndex + 1 }}</td>
+                      <td *ngFor="let col of columns">
+                        <div
+                          *ngIf="
+                            col.subfield;
+                            then nested_object_content;
+                            else normal_content
+                          "
+                        ></div>
+                        <ng-template #nested_object_content>
+                          {{ rowData[col.field][col.subfield] }}
+                        </ng-template>
+                        <ng-template #normal_content>
+                          {{ rowData[col.field] }}
+                        </ng-template>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+            <!-- <p>reporte works!</p> -->
+            <!-- <p-footer></p-footer> -->
+          </p-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

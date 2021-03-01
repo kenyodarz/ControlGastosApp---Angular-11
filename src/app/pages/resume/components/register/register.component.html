@@ -1,0 +1,138 @@
+<div class="p-grid">
+  <div class="p-col-8 p-offset-2">
+    <div class="box">
+      <form
+        [formGroup]="userForm"
+        #f="ngForm"
+        novalidate
+        (ngSubmit)="onSubmit()"
+      >
+        <p-panel>
+          <p-header>
+            Registro Nuevo Usuario
+          </p-header>
+          <div
+            class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
+            style="margin: 10px 0px;"
+          >
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Usuario *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="text"
+                  formControlName="username"
+                  placeholder="Requerido"
+                  pTooltip="Ingrese su nombre de Usuario"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  text="Ingrese un nombre de Usuario"
+                  *ngIf="
+                    !userForm.controls['username'].valid &&
+                    userForm.controls['username'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Nombre *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="text"
+                  formControlName="name"
+                  placeholder="Requerido"
+                  pTooltip="Ingrese su Nombre Completo"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  text="Ingrese Nombre completo"
+                  *ngIf="
+                    !userForm.controls['name'].valid &&
+                    userForm.controls['name'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Email *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="email"
+                  formControlName="email"
+                  style="text-transform:lowercase"
+                  placeholder="Requerido"
+                  pTooltip="Ingrese su correo electronico"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  text="Ingrese un Correo electronico valido"
+                  *ngIf="
+                    !userForm.controls['email'].valid &&
+                    userForm.controls['email'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Contraseña *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="password"
+                  formControlName="password"
+                  placeholder="Requerida - Min(6)"
+                  pTooltip="Ingrese su contraseña"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  [text]="
+                    userForm.controls['password'].errors['required']
+                      ? 'Contraseña es requerida'
+                      : userForm.controls['password'].errors['minlength']
+                      ? 'Deberia tener al menos 6 caracteres'
+                      : ''
+                  "
+                  *ngIf="
+                    !userForm.controls['password'].valid &&
+                    userForm.controls['password'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+          </div>
+          <p-footer>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2 p-offset-10">
+                <button
+                  pButton
+                  type="submit"
+                  label="Aceptar"
+                  [disabled]="!userForm.valid"
+                ></button>
+              </div>
+            </div>
+          </p-footer>
+        </p-panel>
+      </form>
+    </div>
+  </div>
+</div>

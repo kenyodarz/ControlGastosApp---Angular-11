@@ -1,0 +1,3 @@
+:host ::ng-deep .ui-dialog-resizable .ui-dialog-content {
+    overflow: visible;
+}
