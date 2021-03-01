@@ -1,0 +1,10 @@
+.home__container{
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+::ng-deep .p-card .p-card-header {
+  text-align: center;
+  text-transform: uppercase;
+}
