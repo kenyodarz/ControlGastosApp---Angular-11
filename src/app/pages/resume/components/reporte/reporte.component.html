@@ -1,39 +1,36 @@
-<div class="ui-g ui-fluid">
-  <div class="col-12">
+<div class="p-grid ">
+  <div class="p-col-12 p-fluid">
     <p-panel>
       <p-header>
-        <div style="text-align: center;">
-          <strong>
-            Valores iniciales para el informe
-          </strong>
+        <div style="text-align: center">
+          <strong> Valores iniciales para el informe </strong>
         </div>
       </p-header>
       <div class="row">
-        <div class="col-12">
-          <p-button
-            type="button"
-            label="Generar un Informe"
-            routerLink="/resume/informe"
-            styleClass="ui-button-secundary"
-          ></p-button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="ui-g-3" style="text-align: right;">
-            <label style="vertical-align: sub;" for="informes"
-              >Informes:
-            </label>
-          </div>
-          <div class="ui-g-9">
-            <p-dropdown
-              [options]="informes"
-              filter="true"
-              placeholder="Seleccione un Informe"
-              [(ngModel)]="selectedInforme"
-              optionLabel="idInforme"
-              (ngModelChange)="onInformeChange()"
-            ></p-dropdown>
+        <div class="p-col-12">
+          <div class="p-grid">
+            <div class="p-col-3 p-fluid">
+              <p-button
+              label="Generar un Informe"
+              routerLink="/resume/informe"
+              styleClass="p-button-secundary"
+              ></p-button>
+            </div>
+            <div class="p-col-1" style="text-align: right">
+              <label style="vertical-align: sub" for="informes"
+                >Informes:
+              </label>
+            </div>
+            <div class="p-col-8">
+              <p-dropdown
+                [options]="informes"
+                filter="true"
+                placeholder="Seleccione un Informe"
+                [(ngModel)]="selectedInforme"
+                optionLabel="idInforme"
+                (ngModelChange)="onInformeChange()"
+              ></p-dropdown>
+            </div>
           </div>
         </div>
       </div>
@@ -58,41 +55,43 @@
         <div class="col-12">
           <p-panel>
             <p-header>
-              <div style="text-align: center;">Vista Previa Relacion Gastos de Viaje</div>
+              <div style="text-align: center">
+                Vista Previa Relacion Gastos de Viaje
+              </div>
             </p-header>
             <div class="row">
               <div
-                class="col-12"
-                style="border: solid; border-width: 2px; border-radius: 15px;"
+                class="p-grid p-fluid"
+                style="border: solid; border-width: 2px; border-radius: 15px"
               >
-                <div class="ui-g-2">
-                  <img src="./assets/images/lc.png" style="width: 70%;" />
+                <div class="col-2">
+                  <img src="./assets/images/lc.png" style="width: 70%" />
                 </div>
-                <div class="ui-g-8">
-                  <p style="font-size: 8pt; text-align: center;">
+                <div class="col-8">
+                  <p style="font-size: 8pt; text-align: center">
                     CDM MANTENIMIENTO Y SERVICIOS LTDA.<br />
                     NIT: 900.342.895-7<br />
                     AUTOPISTA A SAN ANTONIO CRA 7 # 10-196 LOMITAS<br />
                     TEL: 5732010 - 5732013
                   </p>
                 </div>
-                <div class="ui-g-2">
+                <div class="col-2">
                   <div class="row">
                     <div class="col-12">
-                      <div style="text-align: center;">
+                      <div style="text-align: center">
                         <strong>NUMERO:</strong>
                       </div>
-                      <div style="text-align: center;">
+                      <div style="text-align: center">
                         GVSC-{{ informe.idInforme }}
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12">
-                      <div style="text-align: center;">
+                      <div style="text-align: center">
                         <strong>FECHA:</strong>
                       </div>
-                      <div style="text-align: center;">
+                      <div style="text-align: center">
                         {{ informe.fecha }}
                       </div>
                     </div>
@@ -103,9 +102,9 @@
             <div class="row mt-2">
               <div
                 class="col-12"
-                style="border: solid; border-width: 2px; border-radius: 15px;"
+                style="border: solid; border-width: 2px; border-radius: 15px"
               >
-                <div class="ui-g-6">
+                <div class="p-g-6">
                   <div class="row">
                     <div class="col-12">
                       <label for="nombre"><strong>Nombre: </strong></label>
@@ -113,7 +112,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="ui-g-6">
+                <div class="p-g-6">
                   <div class="row">
                     <div class="col-12">
                       <label for="proyecto"><strong>Cargar a: </strong></label>
@@ -132,21 +131,21 @@
             <div class="row mt-2">
               <div
                 class="col-12"
-                style="border: solid; border-width: 2px; border-radius: 15px;"
+                style="border: solid; border-width: 2px; border-radius: 15px"
               >
-                <div class="ui-g-6">
+                <div class="p-g-6">
                   <div class="row">
                     <div class="col-12">
-                      <table style="width: 100%;">
+                      <table style="width: 100%">
                         <tr>
-                          <th style="text-align: center;">Anticipo</th>
-                          <th style="text-align: center;">Valor</th>
+                          <th style="text-align: center">Anticipo</th>
+                          <th style="text-align: center">Valor</th>
                         </tr>
                         <tr *ngFor="let desembolso of desembolsos">
-                          <td style="text-align: center;">
+                          <td style="text-align: center">
                             {{ desembolso.observaciones }}
                           </td>
-                          <td class="text-success" style="text-align: center;">
+                          <td class="text-success" style="text-align: center">
                             {{ desembolso.cantidad | currency }}
                           </td>
                         </tr>
@@ -154,7 +153,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="ui-g-6">
+                <div class="p-g-6">
                   <div class="row">
                     <div class="col-12">
                       <div class="row">
@@ -201,7 +200,7 @@
             <div class="row mt-2">
               <div
                 class="col-12"
-                style="border: solid; border-width: 2px; border-radius: 15px;"
+                style="border: solid; border-width: 2px; border-radius: 15px"
               >
                 <p-table
                   #dt
@@ -212,12 +211,12 @@
                   tableStyleClass="no-gutters"
                 >
                   <ng-template pTemplate="header" let-columns>
-                    <tr style="text-align: center;">
-                      <th style="width: 8%;">Item</th>
-                      <th style="width: 15%;">Fecha</th>
-                      <th style="width: 20%;">Factura Nro.</th>
-                      <th style="width: 42%;">Descripcion</th>
-                      <th style="width: 15%;">Valor</th>
+                    <tr style="text-align: center">
+                      <th style="width: 8%">Item</th>
+                      <th style="width: 15%">Fecha</th>
+                      <th style="width: 20%">Factura Nro.</th>
+                      <th style="width: 42%">Descripcion</th>
+                      <th style="width: 15%">Valor</th>
                       <!-- <th *ngFor="let col of columns">
                         {{ col.header }}
                       </th> -->
@@ -229,8 +228,8 @@
                     let-rowData
                     let-columns="columns"
                   >
-                    <tr style="font-size: 8pt;">
-                      <td style="text-align: center;">{{ rowIndex + 1 }}</td>
+                    <tr style="font-size: 8pt">
+                      <td style="text-align: center">{{ rowIndex + 1 }}</td>
                       <td *ngFor="let col of columns">
                         <div
                           *ngIf="

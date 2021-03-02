@@ -1,9 +1,7 @@
 :host ::ng-deep p-button {
   margin-right: 0.25em;
 }
-
 #id {
-  font-family: Norwester, "Norwester", sans-serif;
   font-size: 5pt;
 }
 :host ::ng-deep #dt{
