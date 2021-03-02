@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators, FormBuilder } from '@angular/forms';
 // PrimeNG
-import { MessageService, ConfirmationService} from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
 // Servicios
 import { DescriptionService } from 'src/app/core/services/description.service';
@@ -15,7 +15,6 @@ import { RegistroEntrada } from 'src/app/core/models/RegistroEntrada';
 import { Description } from 'src/app/core/models/description';
 import { Proyecto } from 'src/app/core/models/Proyecto';
 import { User } from 'src/app/core/models/user';
-
 @Component({
   selector: 'app-registros-entrada',
   templateUrl: './registros-entrada.component.html',
@@ -194,31 +193,31 @@ export class RegistrosEntradaComponent implements OnInit {
         this.selectedRegistro != null &&
         this.selectedRegistro.idRegistro != null
       ) {
-          // this.formRegistro.patchValue({
-          //   idRegistroSalida: this.selectedRegistro.idRegistro,
-          // });
-          this.formRegistro.patchValue({
-            observaciones: this.selectedRegistro.observaciones,
-          });
-          this.formRegistro.patchValue({
-            description: this.selectedRegistro.description,
-          });
-          this.formRegistro.patchValue({
-            fecha: this.selectedRegistro.fecha,
-          });
-          this.formRegistro.patchValue({
-            cantidad: this.selectedRegistro.cantidad,
-          });
-          this.formRegistro.patchValue({
-            tipo: this.selectedRegistro.tipo,
-          });
-          this.formRegistro.patchValue({
-            idRegistro: this.selectedRegistro.idRegistro,
-          });
-          this.formRegistro.patchValue({
-            users: this.selectedRegistro.users,
-          });
-        } else {
+        // this.formRegistro.patchValue({
+        //   idRegistroSalida: this.selectedRegistro.idRegistro,
+        // });
+        this.formRegistro.patchValue({
+          observaciones: this.selectedRegistro.observaciones,
+        });
+        this.formRegistro.patchValue({
+          description: this.selectedRegistro.description,
+        });
+        this.formRegistro.patchValue({
+          fecha: this.selectedRegistro.fecha,
+        });
+        this.formRegistro.patchValue({
+          cantidad: this.selectedRegistro.cantidad,
+        });
+        this.formRegistro.patchValue({
+          tipo: this.selectedRegistro.tipo,
+        });
+        this.formRegistro.patchValue({
+          idRegistro: this.selectedRegistro.idRegistro,
+        });
+        this.formRegistro.patchValue({
+          users: this.selectedRegistro.users,
+        });
+      } else {
         this.messageService.add({
           severity: 'warn',
           summary: '¡¡¡Advertencia!!!',
@@ -315,9 +314,7 @@ export class RegistrosEntradaComponent implements OnInit {
       description: new FormControl(null, Validators.required),
       tipo: new FormControl(),
       fecha: new FormControl(null, Validators.required),
-      cantidad: new FormControl('', [
-        Validators.required,
-      ]),
+      cantidad: new FormControl('', [Validators.required]),
       users: new FormControl(null, Validators.required),
     });
     this.cols = [
@@ -350,50 +347,6 @@ export class RegistrosEntradaComponent implements OnInit {
         command: () => this.obtenerRegistrosEntrada(),
       },
     ];
-    this.es = {
-      firstDayOfWeek: 1,
-      dayNames: [
-        'domingo',
-        'lunes',
-        'martes',
-        'miércoles',
-        'jueves',
-        'viernes',
-        'sábado',
-      ],
-      dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
-      dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
-      monthNames: [
-        'enero',
-        'febrero',
-        'marzo',
-        'abril',
-        'mayo',
-        'junio',
-        'julio',
-        'agosto',
-        'septiembre',
-        'octubre',
-        'noviembre',
-        'diciembre',
-      ],
-      monthNamesShort: [
-        'ene',
-        'feb',
-        'mar',
-        'abr',
-        'may',
-        'jun',
-        'jul',
-        'ago',
-        'sep',
-        'oct',
-        'nov',
-        'dic',
-      ],
-      today: 'Hoy',
-      clear: 'Borrar',
-    };
   }
   get observaciones() {
     return this.formRegistro.get('observaciones');
