@@ -217,7 +217,14 @@ export class InformeComponent implements OnInit {
     this.selectedUsuario = null;
   }
 
+  /* 
+  Aqui Arme un Enrredo tratando con el informe negativo para ahorrar
+  tiempo decidi usar dos funciones la normal operativoa cuando es positiva y otra que
+  modifique cuando es negativa para poder resolver el problema
+   */
+
   operacionDesembolso(informe: Informe): void {
+    console.log('Positivo');
     let credito = 0 - this.credito;
     let s = informe.idInforme;
     let desembolso: RegistroEntrada;
@@ -244,12 +251,76 @@ export class InformeComponent implements OnInit {
     this.selectedDesembolsos = [];
   }
 
+  operacionDesembolsoNegativo(informe: Informe): void {
+    console.log('Negativo');
+    let credito: number;
+    if (this.credito < 0) {
+      credito = this.credito;
+    } else {
+      credito = 0 - this.credito;
+    }
+    console.log(`credito ${credito}`);
+    let desembolso: RegistroEntrada;
+    this.selectedDesembolsos.forEach((e) => {
+      if (credito + e.cantidad < 0) {
+        console.log(
+          `Aca estamos con cantidad+credito < 0 ${credito + e.cantidad < 0}`
+        );
+
+        desembolso = e;
+        credito = credito + e.cantidad;
+        e.cerrado = true;
+        e.informe = informe;
+        this.guardarDesembolso(e);
+      } else {
+        console.log(
+          `aca entramos si ${credito + e.cantidad < 0} entoces ${this.credito}`
+        );
+
+        desembolso = e;
+        e.informe = informe;
+        e.cerrado = true;
+        this.guardarDesembolso(e);
+      }
+    });
+    if (credito < 0) {
+      let newDesembolso = new RegistroEntrada();
+      newDesembolso.cantidad = credito;
+      newDesembolso.observaciones = desembolso.observaciones + ' - S';
+      newDesembolso.description = desembolso.description;
+      newDesembolso.users = desembolso.users;
+      console.log(newDesembolso);
+      this.guardarDesembolso(newDesembolso);
+    } else {
+      desembolso.cantidad = credito + desembolso.cantidad;
+      desembolso.observaciones = desembolso.observaciones + ' - S';
+      //  + s;
+      desembolso.idRegistro = null;
+      desembolso.cerrado = null;
+      desembolso.informe = null;
+      console.log(desembolso);
+      this.guardarDesembolso(desembolso);
+    }
+    this.selectedDesembolsos = [];
+    this.desembolsos = [];
+  }
+
   operacionGasto(informe: Informe) {
-    this.selectedGastos.forEach((e) => {
+    let gastos = this.selectedGastos;
+    gastos.forEach((e) => {
       e.informe = informe;
       this.guardarGasto(e);
     });
     this.selectedGastos = [];
+    this.gastos = [];
+    console.log(this.total);
+    if (this.total < 0) {
+      console.log('Vamos al negativo');
+      this.operacionDesembolsoNegativo(informe);
+    } else {
+      console.log('Vamos al Positivo');
+      this.operacionDesembolso(informe);
+    }
   }
 
   ngOnInit(): void {
@@ -363,7 +434,6 @@ export class InformeComponent implements OnInit {
         detail:
           'Se ha creado el informe nro.' + informe.idInforme + ' Correctamente',
       });
-      this.operacionDesembolso(informe);
       this.operacionGasto(informe);
     });
   }
