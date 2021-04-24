@@ -69,6 +69,8 @@ export class RegistrosSalidaComponent implements OnInit {
   errorMessage: string = '';
   displaySaveEditDialog: boolean = false;
   total: number = 0;
+  debito: number = 0;
+  credito: number = 0;
   formRegistroSalida: FormGroup;
   showAdminBoard = false;
   showActions = false;
@@ -388,6 +390,8 @@ export class RegistrosSalidaComponent implements OnInit {
         credito += e.cantidad;
       });
     }
+    this.debito = debito
+    this.credito = credito
     this.total = debito - credito;
     // console.log(this.registrosEntrada.length !== 0);
     if (this.registrosEntrada) {
@@ -462,6 +466,8 @@ export class RegistrosSalidaComponent implements OnInit {
     this.currentUser = this.selectedUsuario;
     this.showActions = false;
     this.total = 0;
+    this.debito = 0;
+    this.credito = 0;
     this.hablilitarBotonCerrar = false;
     this.selectedProyecto = null;
     this.registrosEntrada = null;

@@ -2,9 +2,7 @@
   <div class="p-col-12">
     <p-panel>
       <p-header>
-        <div style="text-align: center;">
-          Valores Inicales
-        </div>
+        <div style="text-align: center">Valores Inicales</div>
       </p-header>
       <div class="p-grid p-fluid">
         <div class="p-col-6">
@@ -70,13 +68,27 @@
         <div class="row no-gutters">
           <div class="col-12 total mb-4">
             <span>
-              Total:
+              Total Dinero:
               <span
                 [ngClass]="{
                   'text-danger': total < 0,
                   'text-success': total > 0
                 }"
                 >$ {{ total }}</span
+              >
+            </span>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <span>
+              Total Gastos:
+              <span
+                [ngClass]="{
+                  'text-danger': credito > 0,
+                  'text-success': credito <= 0
+                }"
+                >$ {{ credito }}</span
               >
             </span>
           </div>
@@ -88,9 +100,7 @@
     <form [formGroup]="formRegistroSalida" (ngSubmit)="onSubmit()">
       <p-panel>
         <p-header>
-          <div style="text-align: center;">
-            Relacion Gastos de Viaje
-          </div>
+          <div style="text-align: center">Relacion Gastos de Viaje</div>
         </p-header>
         <div class="p-grid">
           <div class="p-col-6">
@@ -178,10 +188,8 @@
   <div class="p-col-12" *ngIf="showActions">
     <p-panel>
       <p-header>
-        <div style="text-align: center;">
-          <div style="text-align: center;">
-            Gastos
-          </div>
+        <div style="text-align: center">
+          <div style="text-align: center">Gastos</div>
         </div>
       </p-header>
       <p-menubar [model]="items" *ngIf="!cerrarTodosRegistros"></p-menubar>
@@ -198,20 +206,20 @@
         [responsive]="true"
       >
         <ng-template pTemplate="caption">
-          <div style="text-align: right;">
-            <i class="pi pi-search" style="margin: 4px 4px 0 0;"></i>
+          <div style="text-align: right">
+            <i class="pi pi-search" style="margin: 4px 4px 0 0"></i>
             <input
               type="text"
               pInputText
               size="50"
               placeholder="Buscar"
               (input)="dt.filterGlobal($event.target.value, 'contains')"
-              style="width: auto;"
+              style="width: auto"
             />
           </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
-          <tr style="text-align: center;">
+          <tr style="text-align: center">
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
               {{ col.header }}
               <p-sortIcon
@@ -244,7 +252,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
-          <div style="text-align: left;">
+          <div style="text-align: left">
             Registro Seleccionado :
             {{
               selectedRegistroSalida
