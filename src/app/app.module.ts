@@ -1,7 +1,7 @@
 /* Angular */
 import { NgModule } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,30 +20,24 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NavigationComponent } from './pages/navigation/navigation.component';
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    ResumeComponent,
-    RegisterComponent,
-    NavigationComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PrimengModule,
-  ],
-  providers: [
-    MessageService,
-    DialogService,
-    ConfirmationService,
-    AuthInterceptorProviders,
-  ],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        ResumeComponent,
+        RegisterComponent,
+        NavigationComponent,
+    ],
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PrimengModule], providers: [
+        MessageService,
+        DialogService,
+        ConfirmationService,
+        AuthInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
