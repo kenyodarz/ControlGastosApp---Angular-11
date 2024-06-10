@@ -1,7 +1,7 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { Validators, UntypedFormBuilder } from '@angular/forms';
 // PrimeNG
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
@@ -45,14 +45,14 @@ export class RegistrosEntradaComponent implements OnInit {
   isSignUpFailed: boolean = false;
   errorMessage: string = '';
   displaySaveEditDialog: boolean = false;
-  formRegistro: FormGroup;
+  formRegistro: UntypedFormGroup;
   es: any;
   date1: Date;
   proyectos: Proyecto[];
   selectedProyecto: Proyecto;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private descriptionService: DescriptionService,
@@ -309,13 +309,13 @@ export class RegistrosEntradaComponent implements OnInit {
     this.obtenerRegistrosEntrada();
     this.obtenerUsuarios();
     this.formRegistro = this.fb.group({
-      idRegistro: new FormControl(),
-      observaciones: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      tipo: new FormControl(),
-      fecha: new FormControl(null, Validators.required),
-      cantidad: new FormControl('', [Validators.required]),
-      users: new FormControl(null, Validators.required),
+      idRegistro: new UntypedFormControl(),
+      observaciones: new UntypedFormControl(null, Validators.required),
+      description: new UntypedFormControl(null, Validators.required),
+      tipo: new UntypedFormControl(),
+      fecha: new UntypedFormControl(null, Validators.required),
+      cantidad: new UntypedFormControl('', [Validators.required]),
+      users: new UntypedFormControl(null, Validators.required),
     });
     this.cols = [
       { field: 'observaciones', header: 'Descripcion' },

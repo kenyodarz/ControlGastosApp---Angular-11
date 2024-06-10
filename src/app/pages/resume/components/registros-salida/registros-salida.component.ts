@@ -1,7 +1,7 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { Validators, UntypedFormBuilder } from '@angular/forms';
 // PrimeNG
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
@@ -71,14 +71,14 @@ export class RegistrosSalidaComponent implements OnInit {
   total: number = 0;
   debito: number = 0;
   credito: number = 0;
-  formRegistroSalida: FormGroup;
+  formRegistroSalida: UntypedFormGroup;
   showAdminBoard = false;
   showActions = false;
   hablilitarBotonCerrar = false;
   cerrarTodosRegistros: boolean;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authService: AuthService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
@@ -512,16 +512,16 @@ export class RegistrosSalidaComponent implements OnInit {
     this.obtenerSaldos();
     this.obtenerRegistrosSalid();
     this.formRegistroSalida = this.fb.group({
-      idRegistroSalida: new FormControl(),
-      observaciones: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      fecha: new FormControl(null, Validators.required),
-      cantidad: new FormControl(null, [
+      idRegistroSalida: new UntypedFormControl(),
+      observaciones: new UntypedFormControl(null, Validators.required),
+      description: new UntypedFormControl(null, Validators.required),
+      fecha: new UntypedFormControl(null, Validators.required),
+      cantidad: new UntypedFormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
         Validators.min(1),
       ]),
-      users: new FormControl(),
+      users: new UntypedFormControl(),
     });
 
     this.es = {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   Validators,
-  FormControl,
-  FormGroup,
-  FormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   providers: [MessageService],
 })
 export class RegisterComponent implements OnInit {
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
   submitted: boolean;
   genders: SelectItem[];
   description: string;
@@ -28,17 +28,17 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private messageService: MessageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      username: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      password: new FormControl(
+      username: new UntypedFormControl('', Validators.required),
+      name: new UntypedFormControl('', Validators.required),
+      email: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl(
         '',
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),

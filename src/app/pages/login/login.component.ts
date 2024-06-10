@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
@@ -21,20 +21,20 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[];
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private messageService: MessageService
   ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: new FormControl('', Validators.required),
-      password: new FormControl(
+      username: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl(
         '',
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),

@@ -2,9 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   Validators,
-  FormControl,
-  FormGroup,
-  FormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  UntypedFormBuilder,
 } from '@angular/forms';
 // PrimeNG
 import { MessageService, ConfirmationService } from 'primeng/api';
@@ -33,7 +33,7 @@ export class ProyectoComponent implements OnInit {
   cols: any[];
   items: MenuItem[];
   form: any = {};
-  proyectoForm: FormGroup;
+  proyectoForm: UntypedFormGroup;
   isSuccessful: boolean = false;
   isSignUpFailed: boolean = false;
   errorMessage: string = '';
@@ -44,7 +44,7 @@ export class ProyectoComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   obtenerProyectos() {
@@ -199,8 +199,8 @@ export class ProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerProyectos();
     this.proyectoForm = this.fb.group({
-      idProyecto: new FormControl('', Validators.required),
-      nombre: new FormControl('', Validators.required),
+      idProyecto: new UntypedFormControl('', Validators.required),
+      nombre: new UntypedFormControl('', Validators.required),
     });
     this.cols = [
       { field: 'idProyecto', header: 'ID' },
