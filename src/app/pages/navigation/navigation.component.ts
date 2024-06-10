@@ -9,7 +9,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 // Modelos
 import { RegistroEntrada } from 'src/app/core/models/RegistroEntrada';
 import { Description } from 'src/app/core/models/description';
-import { User } from 'src/app/core/models/user';
+import { User } from 'src/app/core/models/User';
 import { Proyecto } from 'src/app/core/models/Proyecto';
 
 @Component({

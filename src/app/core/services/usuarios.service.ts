@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 // RxJS
 import { Observable } from 'rxjs';
 // Modelo
-import { User } from 'src/app/core/models/user';
+import { User } from 'src/app/core/models/User';
 /** Variable de Entorno */
 import { URL_API } from 'src/environments/environment';
 

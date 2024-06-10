@@ -20,7 +20,7 @@ import { RegistroSalida } from 'src/app/core/models/RegistroSalida';
 import { Description } from 'src/app/core/models/description';
 import { Proyecto } from 'src/app/core/models/Proyecto';
 import { Saldo } from 'src/app/core/models/Saldo';
-import { User } from 'src/app/core/models/user';
+import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'app-registros-salida',

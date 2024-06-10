@@ -14,7 +14,7 @@ import { ProyectoService } from 'src/app/core/services/proyecto.service';
 import { RegistroEntrada } from 'src/app/core/models/RegistroEntrada';
 import { Description } from 'src/app/core/models/description';
 import { Proyecto } from 'src/app/core/models/Proyecto';
-import { User } from 'src/app/core/models/user';
+import { User } from 'src/app/core/models/User';
 @Component({
   selector: 'app-registros-entrada',
   templateUrl: './registros-entrada.component.html',
