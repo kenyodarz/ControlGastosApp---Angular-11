@@ -21,9 +21,9 @@
     "@angular/platform-browser-dynamic": "^15.2.10",
     "@angular/router": "^15.2.10",
     "bootstrap": "^4.6.0",
-    "primeflex": "^2.0.0",
-    "primeicons": "^4.1.0",
-    "primeng": "^11.4.5",
+    "primeflex": "^3.2.1",
+    "primeicons": "^6.0.1",
+    "primeng": "^15.4.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
