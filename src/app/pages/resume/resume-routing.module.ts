@@ -21,7 +21,6 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',
-    canActivate: [LoginGuard],
   },
   {
     path: '',
